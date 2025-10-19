@@ -2726,3 +2726,41 @@ hitboxBtn.MouseButton1Click:Connect(function()
     notify("Button Hitbox", "Button Hitbox script activated!", 5)
 end)
 
+-- Spawn Boombox Button
+local boomboxBtn = Instance.new("TextButton")
+boomboxBtn.Size = UDim2.new(0.85, 0, 0, 35)
+boomboxBtn.Text = "Spawn Boombox"
+boomboxBtn.Font = Enum.Font.GothamBold
+boomboxBtn.TextSize = 12
+boomboxBtn.TextColor3 = Color3.new(1, 1, 1)
+boomboxBtn.BackgroundColor3 = Color3.fromRGB(0, 150, 0)
+boomboxBtn.LayoutOrder = 8
+boomboxBtn.Parent = page2Frame
+
+local boomboxCorner = Instance.new("UICorner", boomboxBtn)
+boomboxCorner.CornerRadius = UDim.new(0, 8)
+
+boomboxBtn.MouseButton1Click:Connect(function()
+	playClick()
+	local player = game.Players.LocalPlayer
+	local character = player.Character or player.CharacterAdded:Wait()
+	
+	local boombox = Instance.new("Tool")
+	boombox.Name = "Boombox"
+	boombox.RequiresHandle = true
+
+	local handle = Instance.new("Part")
+	handle.Name = "Handle"
+	handle.Size = Vector3.new(1, 1, 2)
+	handle.Parent = boombox
+
+	local mesh = Instance.new("SpecialMesh", handle)
+	mesh.MeshId = "rbxassetid://11644532503"
+	mesh.TextureId = ""
+	mesh.Scale = Vector3.new(1, 1, 1)
+
+	boombox.Parent = player.Backpack
+
+	print("Boombox spawned successfully!")
+	notify("Spawn Boombox", "Boombox added to your backpack!", 5)
+end)
